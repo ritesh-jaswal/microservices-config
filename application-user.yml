@@ -41,13 +41,15 @@ resilience4j:
   circuitbreaker:
     configs:
       default:
+        slidingWindowSize: 4
+        permittedNumberOfCallsInHalfOpenState: 10
+        waitDurationInOpenState: 10000 # Time in milliseconds (10 seconds)
+        failureRateThreshold: 60
+        eventConsumerBufferSize: 10
         registerHealthIndicator: true
-        slidingWindowType: COUNT_BASED
-        slidingWindowSize: 10
-        failureRateThreshold: 50
-        waitDurationInOpenState: 5s
-        permittedNumberOfCallsInHalfOpenState: 3
-        automaticTransitionFromOpenToHalfOpenEnabled: true
+      someShared:
+        slidingWindowSize: 3
+        permittedNumberOfCallsInHalfOpenState: 10
     instances:
       ratingHotelBreaker:
         baseConfig: default
