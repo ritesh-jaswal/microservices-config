@@ -42,48 +42,6 @@ eureka:
    service-url:
      defaultZone: http://localhost:8761/eureka/
 
-management:
-  health:
-    circuitbreakers:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include:
-          - '*'
-  endpoint:
-    health:
-      show-details: always
-
-resilience4j:
-  circuitbreaker:
-    configs:
-      default:
-        slidingWindowSize: 4
-        permittedNumberOfCallsInHalfOpenState: 10
-        waitDurationInOpenState: 10000 # Time in milliseconds (10 seconds)
-        failureRateThreshold: 60
-        eventConsumerBufferSize: 10
-        registerHealthIndicator: true
-      someShared:
-        slidingWindowSize: 3
-        permittedNumberOfCallsInHalfOpenState: 10
-    instances:
-      ratingHotelBreaker:
-        baseConfig: default
-      allRatingHotelBreaker:
-        baseConfig: default
-
-  timelimiter:
-    configs:
-      default:
-        timeout-duration: 3s
-    instances:
-      ratingHotelBreaker:
-        baseConfig: default
-      allRatingHotelBreaker:
-        baseConfig: default
-
 okta:
   oauth2:
     issuer: https://dev-75906175.okta.com/oauth2/default
