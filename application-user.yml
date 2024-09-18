@@ -1,6 +1,3 @@
-server:
-  port: 8081
-
 spring:
   application:
     name: USER-SERVICE
@@ -14,6 +11,10 @@ spring:
       ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.MySQLDialect
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 
   security:
     oauth2:
